@@ -1,0 +1,56 @@
+<h1>Angular Directives</h1>
+
+<button (click)='toggle = !toggle'>Toggle</button>
+
+<div [ngStyle] = "{
+  width: '200px',
+  height: '200px',
+  borderRadius:  '10px',
+  border: '1px dotted black',
+  background: toggle ? 'black' : 'purple'
+}">
+</div>
+
+<!-- ------------------------------------------------------------------------ -->
+
+<p 
+  [class.purple] = 'toggle'
+  [class.red] = '!toggle'
+>Vladimir Kondratiev</p>
+
+<!-- ------------------------------------------------------------------------ -->
+
+<p *ngIf = 'toggle;else anotherDiv' class="black">
+  <em>Vladimir Kondratiev</em>
+</p>
+<ng-template #anotherDiv>
+  <p class = "green">
+    <em>Vladimir Kondratiev</em>
+  </p>
+</ng-template>
+
+<!-- ------------------------------------------------------------------------ -->
+
+<button (click)='toggle = null'>SwitchDefault</button>
+
+<div [ngSwitch] = 'toggle'>
+  <p *ngSwitchCase = 'true' class = 'black'>Vladimir</p>
+  <p *ngSwitchCase =  'false' class = 'green'>Vladimir Kondratiev</p>
+  <p *ngSwitchDefault>DEFAULT</p>
+</div>
+
+ <!-- ------------------------------------------------------------------------ -->
+
+ <ul style='list-style: none'>
+    <li *ngFor = 'let post of objs; let idx = index'>
+        <p>{{ post.title }} <b>{{ post.author }}</b></p>  
+        <ul>
+          <li *ngFor = 'let comment of post.comments'>
+            <div>
+                <small>{{ comment.name}}</small>
+                <p><i>{{ comment.text }}</i></p>
+            </div>
+          </li>
+        </ul>
+    </li>
+ </ul>
